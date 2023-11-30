@@ -1,5 +1,6 @@
 import * as THREE from "three";
 
+//Singleton 
 export default class Experience {
   static instance;
   constructor(canvas) {
