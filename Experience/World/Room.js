@@ -1,6 +1,7 @@
 import * as THREE from "three";
 
 import Experience from "../Experience";
+import GSAP from "gsap";
 
 export default class Room {
   constructor() {
@@ -10,8 +11,21 @@ export default class Room {
     this.resources = this.experience.resources;
     this.room = this.resources.items.room;
     this.actualRoom = this.room.scene;
+    this.lerp = {
+      target: 0,
+      current: 0,
+      ease: 0.1,
+    };
     this.setModel();
     this.setAnimation();
+    this.onMouseMove();
+  }
+  onMouseMove() {
+    window.addEventListener("mousemove", (e) => {
+      this.rotation =
+        (e.clientX - (window.innerWidth / 2) * 2) / window.innerWidth;
+      this.lerp.target = this.rotation * 0.1;
+    });
   }
   setModel() {
     this.actualRoom.children.forEach((child) => {
@@ -47,10 +61,16 @@ export default class Room {
     this.mixer = new THREE.AnimationMixer(this.actualRoom);
     this.swim = this.mixer.clipAction(this.room.animations[0]);
     this.swim.play();
-}
+  }
   resize() {}
 
   update() {
+    this.lerp.current = GSAP.utils.interpolate(
+      this.lerp.current,
+      this.lerp.target,
+      this.lerp.ease
+    );
+    this.actualRoom.rotation.y = this.lerp.current;
     this.mixer.update(this.time.delta * 0.0009);
   }
 }
