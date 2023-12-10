@@ -7,6 +7,14 @@
 html,
 body {
   font-family: "Montserrat", sans-serif;
+  color: var(--color-text-light);
+}
+:root {
+  --color-text-light: #333332;
+  --color-background-light: #faf4e5;
+  --color-pink-light: #e5a1aa;
+  --color-green-light: #7ad0ac;
+  --color-blue-light: #8395cd;
 }
 /* -------------------Experience------------------ */
 .experience {
@@ -28,6 +36,87 @@ body {
 }
 .page-wrapper {
   position: relative;
+}
+/* -------------------Section------------------ */
+
+.section-margin {
+  height: 3000px;
+  width: 100%;
+}
+
+.section {
+  width: 50%;
+  padding: 1000px 4%;
+  margin: 0;
+  background-color: var(--color-background-light);
+}
+.left {
+  margin-right: auto;
+}
+.right {
+  margin-left: auto;
+}
+.section-intro-wrapper {
+  position: relative;
+  padding: 20% 5%;
+  border-bottom: 2px solid var(--color-pink-light);
+  padding-bottom: 400px;
+}
+.section-detail-wrapper {
+  position: relative;
+  padding: 20% 5%;
+}
+.section-heading {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+.section-text {
+  line-height: 2;
+  margin-top: 18px;
+  font-size: 16px;
+}
+.section-title {
+  position: relative;
+  color: var(--color-pink-light);
+}
+.section-title-text {
+  display: block;
+  font-size: 40px;
+  font-weight: 500;
+  transform-origin: left;
+  transform: skewY(25deg);
+  z-index: 5;
+  text-transform: uppercase;
+}
+.section-title-decoration {
+  position: absolute;
+  border: 1px solid var(--color-pink-light);
+  display: block;
+  width: 100%;
+  max-width: 278px;
+  height: 60px;
+  transform-origin: left;
+  transform: skewY(-25deg);
+}
+.section-title-decoration:nth-of-type(1) {
+  top: 0;
+}
+.section-title-decoration:nth-of-type(2) {
+  top: 80px;
+}
+.section-title-decoration:nth-of-type(3) {
+  top: 80px;
+  transform: skewY(25deg);
+  background-color: var(--color-pink-light);
+
+}
+.section-number{
+  position:absolute;
+  bottom:15px;
+  right:0;
+  color:var(--color-pink-light);
+  font-size: 24px;
 }
 /* -------------------Hero------------------ */
 .hero {
@@ -51,13 +140,13 @@ body {
   top: calc(50% - 120px);
   right: 0;
 }
-.hero-main-title{
+.hero-main-title {
   font-size: 64px;
 }
-.hero-main-description{
-  font-size:18px
+.hero-main-description {
+  font-size: 18px;
 }
-.hero-second-subheading{
-  font-size:32px;
+.hero-second-subheading {
+  font-size: 32px;
   text-transform: uppercase;
 }
