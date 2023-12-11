@@ -9,9 +9,6 @@ export default class Controlls {
     this.resources = this.experience.resources;
     this.time = this.experience.time;
     this.camera = this.experience.camera;
-    this.progress = 0;
-    this.dummyVector = new THREE.Vector3(0, 0, 0);
-    this.position = new THREE.Vector3(0, 0, 0);
   }
   resize() {}
   update() {
