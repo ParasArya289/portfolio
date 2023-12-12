@@ -23,8 +23,9 @@ export default class Experience {
     this.camera = new Camera();
     this.renderer = new Renderer();
     this.resources = new Resources(assets);
-    this.world = new World();
     this.theme = new Theme();
+    this.world = new World();
+
     this.time.on("update", () => {
       this.update();
     });
