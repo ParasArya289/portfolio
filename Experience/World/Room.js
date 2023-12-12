@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
 
 import Experience from "../Experience";
 import GSAP from "gsap";
@@ -54,6 +55,30 @@ export default class Room {
         });
       }
     });
+
+    const width = 0.5;
+    const height = 0.7;
+    const intensity = 1;
+    const rectLight = new THREE.RectAreaLight(
+      0xffffff,
+      intensity,
+      width,
+      height
+    );
+    rectLight.position.set(7.68244, 7, 0.5);
+    rectLight.rotation.x = -Math.PI / 2;
+    rectLight.rotation.z = Math.PI / 4;
+    this.actualRoom.add(rectLight);
+    // this.roomChildren["rectLight"] = rectLight;
+
+    const lamp = new THREE.RectAreaLight(0x5FDCE3, intensity, 1, 0.4);
+    lamp.position.set(-8, 5, -2);
+    lamp.rotation.y = -15;
+    this.actualRoom.add(lamp);
+
+    const rectLightHelper = new RectAreaLightHelper(lamp);
+    // lamp.add(rectLightHelper);
+
     this.scene.add(this.actualRoom);
     this.actualRoom.scale.set(0.11, 0.11, 0.11);
   }
