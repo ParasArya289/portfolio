@@ -7,7 +7,7 @@
 html,
 body {
   font-family: "Montserrat", sans-serif;
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 :root {
   --color-text-light: #333332;
@@ -15,7 +15,35 @@ body {
   --color-pink-light: #e5a1aa;
   --color-green-light: #7ad0ac;
   --color-blue-light: #8395cd;
+
+  /* Dark Theme Variables */
+  --color-text-dark: #faf4e5;
+  --color-background-dark: #8395cd;
 }
+.light-theme {
+  --color-text: var(--color-text-light);
+  --color-background: var(--color-background-light);
+  --color-pink: var(--color-pink-light);
+  --color-green: var(--color-green-light);
+  --color-blue: var(--color-blue-light);
+}
+
+.dark-theme {
+  --color-text: var(--color-text-dark);
+  --color-background: var(--color-background-dark);
+  --color-pink: var(--color-text-dark);
+  --color-green: var(--color-text-dark);
+  --color-blue: var(--color-text-dark);
+}
+
+h1,
+section,
+p,
+span,
+svg {
+  transition: background-color 0.2s, color 0.2s, fill 0.2s ease;
+}
+
 /* -------------------Experience------------------ */
 .experience {
   position: fixed;
@@ -53,6 +81,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  fill: var(--color-text);
 }
 .toggle-btn {
   position: relative;
@@ -63,7 +92,7 @@ body {
   height: 28px;
   border: none;
   cursor: pointer;
-  background-color: var(--color-pink-light);
+  background-color: var(--color-pink);
   border-radius: 99999px;
   margin: 0px 16px;
   box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1);
@@ -73,7 +102,7 @@ body {
   left: 6px;
   width: 20px;
   height: 20px;
-  background-color: var(--color-background-light);
+  background-color: var(--color-background);
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
 }
@@ -81,7 +110,7 @@ body {
   transform: scale(0.9);
 }
 .slide {
-  left:30px;
+  left: 30px;
 }
 /* -------------------Section------------------ */
 
@@ -94,7 +123,7 @@ body {
   width: 50%;
   padding: 1000px 4%;
   margin: 0;
-  background-color: var(--color-background-light);
+  background-color: var(--color-background);
 }
 .left {
   margin-right: auto;
@@ -105,7 +134,7 @@ body {
 .section-intro-wrapper {
   position: relative;
   padding: 20% 5%;
-  border-bottom: 2px solid var(--color-pink-light);
+  border-bottom: 2px solid var(--color-pink);
   padding-bottom: 400px;
 }
 .section-detail-wrapper {
@@ -124,7 +153,7 @@ body {
 }
 .section-title {
   position: relative;
-  color: var(--color-pink-light);
+  color: var(--color-pink);
 }
 .section-title-text {
   display: block;
@@ -137,7 +166,7 @@ body {
 }
 .section-title-decoration {
   position: absolute;
-  border: 1px solid var(--color-pink-light);
+  border: 1px solid var(--color-pink);
   display: block;
   width: 100%;
   max-width: 278px;
@@ -154,13 +183,13 @@ body {
 .section-title-decoration:nth-of-type(3) {
   top: 80px;
   transform: skewY(25deg);
-  background-color: var(--color-pink-light);
+  background-color: var(--color-pink);
 }
 .section-number {
   position: absolute;
   bottom: 15px;
   right: 0;
-  color: var(--color-pink-light);
+  color: var(--color-pink);
   font-size: 24px;
 }
 /* -------------------Hero------------------ */
