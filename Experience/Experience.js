@@ -6,6 +6,7 @@ import Renderer from "./Renderer";
 import World from "./World/World";
 import Resources from "./Utils/Resources";
 import assets from "./Utils/assets";
+import Theme from "./Theme";
 
 //Singleton
 export default class Experience {
@@ -23,6 +24,7 @@ export default class Experience {
     this.renderer = new Renderer();
     this.resources = new Resources(assets);
     this.world = new World();
+    this.theme = new Theme();
     this.time.on("update", () => {
       this.update();
     });
