@@ -18,6 +18,8 @@ export default class Theme extends EventEmitter {
         if (prefersDarkMode) {
           this.toggleCircle.classList.toggle("slide");
           this.theme = "dark";
+          document.body.classList.toggle("dark-theme");
+          document.body.classList.toggle("light-theme");
           this.emit("switch", this.theme);
         }
       }, 0);
@@ -29,10 +31,14 @@ export default class Theme extends EventEmitter {
         const isDarkMode = e.matches;
         if (isDarkMode) {
           this.toggleCircle.classList.add("slide");
+          document.body.classList.add("dark-theme");
           this.theme = "dark";
+          document.body.classList.remove("light-theme");
           this.emit("switch", this.theme);
         } else {
           this.toggleCircle.classList.remove("slide");
+          document.body.classList.add("light-theme");
+          document.body.classList.remove("dark-theme");
           this.theme = "light";
           this.emit("switch", this.theme);
         }
@@ -42,6 +48,8 @@ export default class Theme extends EventEmitter {
     this.toggleButton.addEventListener("click", () => {
       this.toggleCircle.classList.toggle("slide");
       this.theme = this.theme === "light" ? "dark" : "light";
+      document.body.classList.toggle("dark-theme");
+      document.body.classList.toggle("light-theme");
       this.emit("switch", this.theme);
     });
   }
