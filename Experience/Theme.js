@@ -1,6 +1,5 @@
 import { EventEmitter } from "events";
 import Experience from "./Experience";
-import Resources from "./Utils/Resources";
 export default class Theme extends EventEmitter {
   constructor() {
     super();
@@ -21,7 +20,6 @@ export default class Theme extends EventEmitter {
           this.theme = "dark";
           this.emit("switch", this.theme);
         }
-        console.log("event emitted", this.theme);
       }, 0);
     });
 
