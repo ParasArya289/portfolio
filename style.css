@@ -37,6 +37,49 @@ body {
 .page-wrapper {
   position: relative;
 }
+/* -------------------Toggle button------------------ */
+
+.toggle-bar {
+  position: fixed;
+  top: 48px;
+  right: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999999999;
+}
+.sun-wrapper,
+.moon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.toggle-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 28px;
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-pink-light);
+  border-radius: 99999px;
+  margin: 0px 16px;
+  box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.1);
+}
+.toggle-circle{
+  position: absolute;
+  left:6px;
+  width:20px;
+  height:20px;
+  background-color: var(--color-background-light);
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+.toggle-btn:hover .toggle-circle{
+  transform: scale(0.9);
+}
 /* -------------------Section------------------ */
 
 .section-margin {
@@ -109,13 +152,12 @@ body {
   top: 80px;
   transform: skewY(25deg);
   background-color: var(--color-pink-light);
-
 }
-.section-number{
-  position:absolute;
-  bottom:15px;
-  right:0;
-  color:var(--color-pink-light);
+.section-number {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  color: var(--color-pink-light);
   font-size: 24px;
 }
 /* -------------------Hero------------------ */
