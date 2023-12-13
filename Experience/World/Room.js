@@ -54,6 +54,19 @@ export default class Room {
           map: this.resources.items.screen,
         });
       }
+      if (child.name === "Lamp") {
+        const lampPointLight = new THREE.PointLight(0xFFF59D, 0.1,5);
+        lampPointLight.position.set(0,1.8,0)
+        const lampRectLight = new THREE.RectAreaLight(0xFFF59D, 1.5, 0.3, 0.3);
+        lampRectLight.position.set(0, 0.5, 0);
+        lampRectLight.rotation.x = Math.PI / 2;
+        this.actualRoom.add(lampRectLight);
+
+        const rectLightHelper = new RectAreaLightHelper(lampRectLight);
+        // lampRectLight.add(rectLightHelper);
+        child.add(lampRectLight);
+        child.add(lampPointLight);
+      }
     });
 
     const width = 0.5;
@@ -71,7 +84,7 @@ export default class Room {
     this.actualRoom.add(rectLight);
     // this.roomChildren["rectLight"] = rectLight;
 
-    const lamp = new THREE.RectAreaLight(0x5FDCE3, intensity, 1, 0.4);
+    const lamp = new THREE.RectAreaLight(0x5fdce3, intensity, 1, 0.4);
     lamp.position.set(-8, 5, -2);
     lamp.rotation.y = -15;
     this.actualRoom.add(lamp);
