@@ -125,6 +125,7 @@ svg {
   margin: 0;
   background-color: var(--color-background);
 }
+
 .left {
   margin-right: auto;
 }
@@ -192,6 +193,34 @@ svg {
   color: var(--color-pink);
   font-size: 24px;
 }
+/* ----odd section---- */
+.section:nth-of-type(odd) {
+  color: var(--color-blue);
+}
+.section:nth-of-type(odd) .section-intro-wrapper,
+.section:nth-of-type(odd) .section-title,
+.section:nth-of-type(odd) .section-title-decoration,
+.section:nth-of-type(odd) .section-number {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+.section:nth-of-type(odd) .section-title-decoration:nth-child(4) {
+  background-color: var(--color-blue);
+}
+/* ----even section---- */
+.section:nth-of-type(even) {
+  color: var(--color-green);
+}
+.section:nth-of-type(even) .section-intro-wrapper,
+.section:nth-of-type(even) .section-title,
+.section:nth-of-type(even) .section-title-decoration,
+.section:nth-of-type(even) .section-number {
+  border-color: var(--color-green);
+  color: var(--color-green);
+}
+.section:nth-of-type(even) .section-title-decoration:nth-child(4) {
+  background-color: var(--color-green);
+}
 /* -------------------Hero------------------ */
 .hero {
   height: 100vh;
@@ -223,4 +252,10 @@ svg {
 .hero-second-subheading {
   font-size: 32px;
   text-transform: uppercase;
+}
+
+@media (max-width: 700px) {
+  .section {
+    width: 100%;
+  }
 }
