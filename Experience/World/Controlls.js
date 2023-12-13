@@ -19,7 +19,24 @@ export default class Controlls {
     const scroll = GSAP.matchMedia();
     //desktop
     scroll.add("(min-width:969px)", () => {
-      console.log("desktop");
+      this.room.scale.set(0.11, 0.11, 0.11);
+      this.room.position.set(0, 0, 0);
+
+      // //monitor rectlight
+      this.room.children[21].height = 0.4;
+      this.room.children[21].width = 1;
+
+      // //aquariam rectlight
+      this.room.children[20].height = 0.7;
+      this.room.children[20].width = 0.5;
+
+      // //min floor lamp
+      this.room.children[8].children[2].height = 0.3;
+      this.room.children[8].children[2].width = 0.3;
+
+      this.room.children[8].children[3].power = 1;
+      //camera
+      this.camera.orthographicCamera.position.set(0, 6.5, 10);
       //First section
       this.firstMovetimeline = new GSAP.timeline();
       this.firstMovetimeline.to(this.room.position, {
@@ -109,7 +126,43 @@ export default class Controlls {
     });
     //mobile
     scroll.add("(max-width:968px)", () => {
-      console.log("mobile");
+      //reset
+      this.room.scale.set(0.07, 0.07, 0.07);
+      this.room.position.set(0, 0, 0);
+
+      //monitor rectlight
+      this.room.children[21].height = this.room.children[21].height * 0.7;
+      this.room.children[21].width = this.room.children[21].width * 0.7;
+
+      //aquariam rectlight
+      this.room.children[20].height = this.room.children[20].height * 0.7;
+      this.room.children[20].width = this.room.children[20].width * 0.7;
+
+      //min floor lamp
+      this.room.children[8].children[2].height =
+        this.room.children[8].children[2].height * 0.7;
+      this.room.children[8].children[2].width =
+        this.room.children[8].children[2].width * 0.7;
+
+      this.room.children[8].children[3].power = 0.2;
+
+      //camera
+      this.camera.orthographicCamera.position.set(0, 6.5, 10);
+
+      // First section
+      this.firstMoveTimeline = new GSAP.timeline({
+        scrollTrigger: {
+          trigger: ".first-margin",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.6,
+          // invalidateOnRefresh: true,
+        },
+      }).to(this.room.scale, {
+        x: 0.1,
+        y: 0.1,
+        z: 0.1,
+      });
     });
   }
   resize() {}
