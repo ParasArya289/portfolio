@@ -78,6 +78,7 @@ export default class Room {
       width,
       height
     );
+    aquariamRectLight.name = "aquariamRectLight";
     aquariamRectLight.position.set(7.68244, 7, 0.5);
     aquariamRectLight.rotation.x = -Math.PI / 2;
     aquariamRectLight.rotation.z = Math.PI / 4;
@@ -85,6 +86,7 @@ export default class Room {
     // this.roomChildren["aquariamRectLight"] = aquariamRectLight;
 
     const monitorRectLight = new THREE.RectAreaLight(0x5fdce3, intensity, 1, 0.4);
+    monitorRectLight.name = "monitorRectLight";
     monitorRectLight.position.set(-8, 5, -2);
     monitorRectLight.rotation.y = -15;
     this.actualRoom.add(monitorRectLight);
