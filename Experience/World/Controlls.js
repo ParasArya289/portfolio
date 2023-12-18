@@ -1,6 +1,7 @@
 import Experience from "../Experience";
 import GSAP from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ASScroll from "@ashthornton/asscroll";
 
 export default class Controlls {
   constructor() {
@@ -31,7 +32,56 @@ export default class Controlls {
     });
 
     GSAP.registerPlugin(ScrollTrigger);
+    this.setSmoothScroll();
     this.setScrollTrigger();
+  }
+  setupASScroll() {
+    // https://github.com/ashthornton/asscroll
+    const asscroll = new ASScroll({
+      ease: 0.1,
+      disableRaf: true,
+    });
+
+    GSAP.ticker.add(asscroll.update);
+
+    ScrollTrigger.defaults({
+      scroller: asscroll.containerElement,
+    });
+
+    ScrollTrigger.scrollerProxy(asscroll.containerElement, {
+      scrollTop(value) {
+        if (arguments.length) {
+          asscroll.currentPos = value;
+          return;
+        }
+        return asscroll.currentPos;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      fixedMarkers: true,
+    });
+
+    asscroll.on("update", ScrollTrigger.update);
+    ScrollTrigger.addEventListener("refresh", asscroll.resize);
+
+    requestAnimationFrame(() => {
+      asscroll.enable({
+        newScrollElements: document.querySelectorAll(
+          ".gsap-marker-start, .gsap-marker-end, [asscroll]"
+        ),
+      });
+    });
+    return asscroll;
+  }
+
+  setSmoothScroll() {
+    this.asscroll = this.setupASScroll();
   }
   setScrollTrigger() {
     // const scroll = GSAP.matchMedia();
@@ -283,7 +333,6 @@ export default class Controlls {
         });
       },
       all: () => {
-
         //progress bar and section border animation
         this.sections = document.querySelectorAll(".section");
         this.sections.forEach((section) => {
