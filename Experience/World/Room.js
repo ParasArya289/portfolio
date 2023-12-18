@@ -54,10 +54,36 @@ export default class Room {
           map: this.resources.items.screen,
         });
       }
+      if (child.name === "Mini_Floor") {
+        child.position.x = -0.289521;
+        child.position.z = 8.83572;
+      }
+      if (
+        child.name === "Mailbox" ||
+        child.name === "Lamp" ||
+        child.name === "FloorFirst" ||
+        child.name === "FloorSecond" ||
+        child.name === "FloorThird" ||
+        child.name === "Dirt" ||
+        child.name === "Flower1" ||
+        child.name === "Flower2"
+      ) {
+        if (child.name === "Lamp") {
+          child.children.forEach((child) => {
+            if (child.type === "PointLight") {
+              child.scale.set(0, 0, 0);
+              child.power = 0;
+              child.intensity = 0;
+            }
+          });
+        }
+        child.scale.set(0, 0, 0);
+      }
+      // child.scale.set(0, 0, 0);
       if (child.name === "Lamp") {
-        const lampPointLight = new THREE.PointLight(0xFFF59D, 0.1,5);
-        lampPointLight.position.set(0,1.8,0)
-        const lampRectLight = new THREE.RectAreaLight(0xFFF59D, 1.5, 0.3, 0.3);
+        const lampPointLight = new THREE.PointLight(0xfff59d, 0.1, 5);
+        lampPointLight.position.set(0, 1.8, 0);
+        const lampRectLight = new THREE.RectAreaLight(0xfff59d, 1.5, 0.3, 0.3);
         lampRectLight.position.set(0, 0.5, 0);
         lampRectLight.rotation.x = Math.PI / 2;
         this.actualRoom.add(lampRectLight);
@@ -85,7 +111,12 @@ export default class Room {
     this.actualRoom.add(aquariamRectLight);
     // this.roomChildren["aquariamRectLight"] = aquariamRectLight;
 
-    const monitorRectLight = new THREE.RectAreaLight(0x5fdce3, intensity, 1, 0.4);
+    const monitorRectLight = new THREE.RectAreaLight(
+      0x5fdce3,
+      intensity,
+      1,
+      0.4
+    );
     monitorRectLight.name = "monitorRectLight";
     monitorRectLight.position.set(-8, 5, -2);
     monitorRectLight.rotation.y = -15;
