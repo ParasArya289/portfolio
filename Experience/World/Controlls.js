@@ -202,8 +202,8 @@ export default class Controlls {
             invalidateOnRefresh: true,
           },
         }).to(this.camera.orthographicCamera.position, {
+          y: 1.5,
           x: -4.1,
-          y: -1,
         });
       },
       "(max-width:968px)": () => {
