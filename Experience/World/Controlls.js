@@ -12,6 +12,11 @@ export default class Controlls {
     this.time = this.experience.time;
     this.camera = this.experience.camera;
     this.room = this.experience.world.room.actualRoom;
+
+    this.circleFirst = this.experience.world.floor.circleFirst;
+    this.circleSecond = this.experience.world.floor.circleSecond;
+    this.circleThird = this.experience.world.floor.circleThird;
+
     this.room.children.forEach((child) => {
       if (child.name === "monitorRectLight") {
         this.monitorRectLight = child;
@@ -389,6 +394,60 @@ export default class Controlls {
               pinSpacing: false,
             },
           });
+        });
+
+        //circle and some house movements
+        this.firstCircle = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".first-margin",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+          },
+        }).to(this.circleFirst.scale, {
+          x: 3,
+          y: 3,
+          z: 3,
+        });
+
+        // Second section -----------------------------------------
+        this.secondCircle = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".second-margin",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+          },
+        })
+          .to(
+            this.circleSecond.scale,
+            {
+              x: 3,
+              y: 3,
+              z: 3,
+            },
+            "same"
+          )
+          .to(
+            this.room.position,
+            {
+              y: 0.4,
+            },
+            "same"
+          );
+
+        // Third section -----------------------------------------
+        this.thirdCircle = new GSAP.timeline({
+          scrollTrigger: {
+            trigger: ".third-margin",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.6,
+          },
+        }).to(this.circleThird.scale, {
+          x: 3,
+          y: 3,
+          z: 3,
         });
 
         //min floor animation
