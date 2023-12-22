@@ -25,6 +25,7 @@ export default class Theme extends EventEmitter {
       }, 0);
     });
 
+    //change theme if users device display mode changes
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", (e) => {
