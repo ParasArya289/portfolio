@@ -12,6 +12,7 @@ export default class Room {
     this.resources = this.experience.resources;
     this.room = this.resources.items.room;
     this.actualRoom = this.room.scene;
+    this.roomChildren = {};
     this.lerp = {
       target: 0,
       current: 0,
@@ -58,28 +59,33 @@ export default class Room {
         child.position.x = -0.289521;
         child.position.z = 8.83572;
       }
-      if (
-        child.name === "Mailbox" ||
-        child.name === "Lamp" ||
-        child.name === "FloorFirst" ||
-        child.name === "FloorSecond" ||
-        child.name === "FloorThird" ||
-        child.name === "Dirt" ||
-        child.name === "Flower1" ||
-        child.name === "Flower2"
-      ) {
-        if (child.name === "Lamp") {
-          child.children.forEach((child) => {
-            if (child.type === "PointLight") {
-              child.scale.set(0, 0, 0);
-              child.power = 0;
-              child.intensity = 0;
-            }
-          });
-        }
-        child.scale.set(0, 0, 0);
+      // if (
+      //   child.name === "Mailbox" ||
+      //   child.name === "Lamp" ||
+      //   child.name === "FloorFirst" ||
+      //   child.name === "FloorSecond" ||
+      //   child.name === "FloorThird" ||
+      //   child.name === "Dirt" ||
+      //   child.name === "Flower1" ||
+      //   child.name === "Flower2"
+      // ) {
+      //   if (child.name === "Lamp") {
+      //     child.children.forEach((child) => {
+      //       if (child.type === "PointLight") {
+      //         child.scale.set(0, 0, 0);
+      //         child.power = 0;
+      //         child.intensity = 0;
+      //       }
+      //     });
+      //   }
+      //   child.scale.set(0, 0, 0);
+      // }
+      child.scale.set(0, 0, 0);
+      if (child.name === "Cube") {
+        // child.scale.set(1, 1, 1);
+        child.position.set(0, -1.5, 0);
+        child.rotation.y = Math.PI / 4;
       }
-      // child.scale.set(0, 0, 0);
       if (child.name === "Lamp") {
         const lampPointLight = new THREE.PointLight(0xfff59d, 0.1, 5);
         lampPointLight.position.set(0, 1.8, 0);
@@ -92,7 +98,10 @@ export default class Room {
         // lampRectLight.add(rectLightHelper);
         child.add(lampRectLight);
         child.add(lampPointLight);
+
+        this.roomChildren["lampPointLight"] = lampPointLight;
       }
+      this.roomChildren[child.name.toLowerCase()] = child;
     });
 
     const width = 0.5;
@@ -109,7 +118,7 @@ export default class Room {
     aquariamRectLight.rotation.x = -Math.PI / 2;
     aquariamRectLight.rotation.z = Math.PI / 4;
     this.actualRoom.add(aquariamRectLight);
-    // this.roomChildren["aquariamRectLight"] = aquariamRectLight;
+    this.roomChildren["aquariamRectLight"] = aquariamRectLight;
 
     const monitorRectLight = new THREE.RectAreaLight(
       0x5fdce3,
@@ -121,6 +130,7 @@ export default class Room {
     monitorRectLight.position.set(-8, 5, -2);
     monitorRectLight.rotation.y = -15;
     this.actualRoom.add(monitorRectLight);
+    this.roomChildren["monitorRectLight"] = monitorRectLight;
 
     const rectLightHelper = new RectAreaLightHelper(monitorRectLight);
     // monitorRectLight.add(rectLightHelper);

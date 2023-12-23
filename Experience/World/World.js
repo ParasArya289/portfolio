@@ -1,3 +1,4 @@
+import EventEmitter from "events";
 import * as THREE from "three";
 
 import Experience from "../Experience";
@@ -6,8 +7,9 @@ import Environment from "./Environment";
 import Floor from "./Floor";
 import Room from "./Room";
 
-export default class World {
+export default class World extends EventEmitter {
   constructor() {
+    super();
     this.experience = new Experience();
     this.sizes = this.experience.sizes;
     this.scene = this.experience.scene;
@@ -20,7 +22,7 @@ export default class World {
       this.environment = new Environment();
       this.room = new Room();
       this.floor = new Floor();
-      this.controlls = new Controlls();
+      this.emit("worldReady");
     });
 
     this.theme.on("switch", (theme) => {
