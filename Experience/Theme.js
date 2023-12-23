@@ -10,16 +10,19 @@ export default class Theme extends EventEmitter {
     this.toggleCircle = document.querySelector(".toggle-circle");
     this.setEventListeners();
 
+    const prefersDarkMode = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+    if (prefersDarkMode) {
+      this.toggleCircle.classList.toggle("slide");
+      this.theme = "dark";
+      document.body.classList.toggle("dark-theme");
+      document.body.classList.toggle("light-theme");
+    }
+
     this.resources.on("ready", () => {
       setTimeout(() => {
-        const prefersDarkMode = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
         if (prefersDarkMode) {
-          this.toggleCircle.classList.toggle("slide");
-          this.theme = "dark";
-          document.body.classList.toggle("dark-theme");
-          document.body.classList.toggle("light-theme");
           this.emit("switch", this.theme);
         }
       }, 0);
