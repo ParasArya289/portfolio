@@ -1,6 +1,7 @@
 import EventEmitter from "events";
 import Experience from "../Experience";
 import GSAP from "gsap";
+import convertToSpan from "../Utils/convertToSpan";
 
 export default class Preloader extends EventEmitter {
   constructor() {
@@ -24,12 +25,26 @@ export default class Preloader extends EventEmitter {
     });
   }
   setAssets() {
+    convertToSpan(document.querySelector(".intro-text"));
+    convertToSpan(document.querySelector(".hero-main-title"));
+    convertToSpan(document.querySelector(".hero-main-description"));
+    convertToSpan(document.querySelector(".hero-second-subheading"));
+    convertToSpan(document.querySelector(".second-sub"));
+
     this.room = this.experience.world.room.actualRoom;
     this.roomChildren = this.experience.world.room.roomChildren;
   }
   firstIntro() {
     return new Promise((resolve) => {
       this.timeline = new GSAP.timeline();
+      this.timeline.set(".animatedis", { y: 0, yPercent: 100 });
+      this.timeline.to(".preloader", {
+        opacity: 0,
+        delay: 1,
+        onComplete: () => {
+          document.querySelector(".preloader").classList.add("hidden");
+        },
+      });
       if (this.device === "desktop") {
         this.timeline
           .to(this.roomChildren.cube.scale, {
@@ -43,7 +58,7 @@ export default class Preloader extends EventEmitter {
             x: -1,
             ease: "power1.out",
             duration: 0.7,
-            onComplete: resolve,
+            // onComplete: resolve,
           });
       } else {
         this.timeline
@@ -58,9 +73,31 @@ export default class Preloader extends EventEmitter {
             z: -1,
             ease: "power1.out",
             duration: 0.7,
-            onComplete: resolve,
+            // onComplete: resolve,
           });
       }
+      this.timeline
+        .to(".intro-text .animatedis", {
+          yPercent: 0,
+          stagger: 0.05,
+          ease: "back.out(1.7)",
+          // onComplete: resolve,
+        })
+        .to(
+          ".arrow-svg-wrapper",
+          {
+            opacity: 1,
+          },
+          "same"
+        )
+        .to(
+          ".toggle-bar",
+          {
+            opacity: 1,
+            onComplete: resolve,
+          },
+          "same"
+        );
     });
   }
   secondIntro() {

@@ -9,9 +9,9 @@ body {
   font-family: "Montserrat", sans-serif;
   color: var(--color-text);
 }
-body {
-  /* overflow: hidden; */
-}
+/* body {
+  overflow: hidden;
+} */
 :root {
   --color-text-light: #333332;
   --color-background-light: #faf4e5;
@@ -68,13 +68,110 @@ svg {
 .page-wrapper {
   position: relative;
 }
-/* -------------------Toggle button------------------ */
+/* -------------------Preloder-loading-screen----------------*/
+.preloader {
+  background-color: var(--color-background);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  opacity: 1;
+  z-index: 99999999999999999;
+}
+
+.preloader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 6px;
+  background-color: var(--color-pink);
+  animation: load 1s ease-in-out infinite;
+}
+
+.circle:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.circle:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.hidden{
+  display: none;
+}
+@keyframes load {
+  0% {
+    transform: translateY(0);
+  }
+
+  20% {
+    transform: translateY(-12px);
+  }
+
+  40% {
+    transform: translateY(0);
+  }
+}
+/* -------------------Preloder----------------*/
+.animatedis {
+  display: inline-block;
+  font-size: inherit;
+  color: inherit;
+  transform: translateY(100%);
+}
+.intro-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--color-text);
+  transform: translate(-50%, -50%);
+}
+
+.arrow-svg-wrapper {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  opacity: 0;
+  color: var(--color-text);
+  transform: translate(-50%, -50%);
+  animation: bounce 0.5s linear alternate infinite;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+/* -------------------Toggle button----------------*/
 
 .toggle-bar {
   position: fixed;
   top: 48px;
   right: 48px;
   display: flex;
+  opacity: 0;
   justify-content: center;
   align-items: center;
   z-index: 99999999999;
@@ -301,5 +398,23 @@ svg {
   .progress-bar-wrapper-left {
     right: 0;
     left: auto;
+  }
+  .hero-main{
+    bottom: 120px;
+  }
+  .hero-second{
+    top: 210px;
+  }
+  .hero-wrapper{
+    width: calc(100% - 60px);
+  }
+  .hero-main-title{
+    font-size: 32px;
+  }
+  .hero-main-description{
+    font-size: 18px;
+  }
+  .hero-second-subheading{
+    font-size: 18px;
   }
 }
