@@ -7,6 +7,8 @@ import World from "./World/World";
 import Resources from "./Utils/Resources";
 import assets from "./Utils/assets";
 import Theme from "./Theme";
+import Preloader from "./World/Preloder";
+import Controlls from "./World/Controlls";
 
 //Singleton
 export default class Experience {
@@ -25,6 +27,11 @@ export default class Experience {
     this.resources = new Resources(assets);
     this.theme = new Theme();
     this.world = new World();
+    this.preloder = new Preloader();
+
+    this.preloder.on("enablecontrols", () => {
+      this.controlls = new Controlls();
+    });
 
     this.time.on("update", () => {
       this.update();
@@ -34,6 +41,7 @@ export default class Experience {
     });
   }
   update() {
+    this.preloder.update();
     this.camera.update();
     this.renderer.update();
     this.world.update();
