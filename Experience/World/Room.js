@@ -89,6 +89,7 @@ export default class Room {
       if (child.name === "Lamp") {
         const lampPointLight = new THREE.PointLight(0xfff59d, 0.1, 5);
         lampPointLight.position.set(0, 1.8, 0);
+        lampPointLight.power = 0;
         const lampRectLight = new THREE.RectAreaLight(0xfff59d, 1.5, 0.3, 0.3);
         lampRectLight.position.set(0, 0.5, 0);
         lampRectLight.rotation.x = Math.PI / 2;

@@ -225,6 +225,16 @@ export default class Preloader extends EventEmitter {
           },
           ">-0.5"
         )
+        // .to(
+        //   this.roomChildren.aquariumRectLight,
+        //   {
+        //     height: 1,
+        //     width: 1,
+        //     ease: "back.out(2.2)",
+        //     duration: 0.5,
+        //   },
+        //   ">-0.5"
+        // )
         .to(
           this.roomChildren.clock.scale,
           {
