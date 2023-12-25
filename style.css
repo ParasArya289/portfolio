@@ -9,9 +9,7 @@ body {
   font-family: "Montserrat", sans-serif;
   color: var(--color-text);
 }
-/* body {
-  overflow: hidden;
-} */
+
 :root {
   --color-text-light: #333332;
   --color-background-light: #faf4e5;
