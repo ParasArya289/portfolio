@@ -94,14 +94,33 @@ export default class Controlls {
     ScrollTrigger.matchMedia({
       "(min-width:969px)": () => {
         console.log("desktop");
+
+        // this.resetTimeline = new GSAP.timeline();
+        // this.resetTimeline.to(this.monitorRectLight, {
+        //   height: 0.4,
+        //   width: 1,
+        //   onComplete: () => {
+        //     this.monitorRectLight.height = 0.4;
+        //     this.monitorRectLight.width = 1;
+        //   },
+        // });
+        // this.resetTimeline.to(this.aquariamRectLight, {
+        //   height: 0.7,
+        //   width: 0.5,
+        //   onComplete: () => {
+        //     this.aquariamRectLight.height = 0.7;
+        //     this.aquariamRectLight.width = 0.5;
+        //   },
+        // });
+
         this.room.scale.set(0.11, 0.11, 0.11);
         this.room.position.set(0, 0, 0);
 
-        // //monitor rectlight
+        //monitor rectlight
         this.monitorRectLight.height = 0.4;
         this.monitorRectLight.width = 1;
 
-        // //aquariam rectlight
+        //aquariam rectlight
         this.aquariamRectLight.height = 0.7;
         this.aquariamRectLight.width = 0.5;
 
@@ -109,7 +128,6 @@ export default class Controlls {
         this.rectAreaLight.height = 0.3;
         this.rectAreaLight.width = 0.3;
 
-        this.pointLight.power = 1;
         //camera
         this.camera.orthographicCamera.position.set(0, 6.5, 10);
 
@@ -165,16 +183,16 @@ export default class Controlls {
           .to(
             this.monitorRectLight,
             {
-              height: this.monitorRectLight.height * 4,
-              width: this.monitorRectLight.width * 4,
+              height: 0.4 * 4,
+              width: 1 * 4,
             },
             "same"
           )
           .to(
             this.aquariamRectLight,
             {
-              height: this.aquariamRectLight.height * 4,
-              width: this.aquariamRectLight.width * 4,
+              height: 0.7 * 4,
+              width: 0.5 * 4,
             },
             "same"
           )
@@ -184,14 +202,7 @@ export default class Controlls {
               height: 0.3 * 4,
               width: 0.3 * 4,
             },
-            "same"
-          )
-          .to(
-            this.pointLight,
-            {
-              power: 1 * 4,
-            },
-            "same"
+            "minifloor"
           );
 
         this.thirdMovetimeline = new GSAP.timeline({
@@ -225,8 +236,6 @@ export default class Controlls {
         //min floor lamp
         this.rectAreaLight.height = 0.21;
         this.rectAreaLight.width = 0.21;
-
-        this.pointLight.power = 0.2;
 
         //camera
         this.camera.orthographicCamera.position.set(0, 6.5, 10);
@@ -308,14 +317,7 @@ export default class Controlls {
               width: this.rectAreaLight.width * 3.4,
               height: this.rectAreaLight.height * 3.4,
             },
-            "same"
-          )
-          .to(
-            this.pointLight,
-            {
-              power: 1,
-            },
-            "same"
+            "minifloor"
           )
           .to(
             this.room.position,
@@ -482,6 +484,11 @@ export default class Controlls {
               ease: "back.out(2)",
               duration: 0.3,
             });
+            this.lampLight = GSAP.to(this.room.pointLight, {
+              power: 1,
+              ease: "back.out(2)",
+              duration: 0.3,
+            });
           }
           if (child.name === "FloorFirst") {
             this.fourth = GSAP.to(child.scale, {
@@ -540,6 +547,7 @@ export default class Controlls {
         this.secondPartTimeline.add(this.first);
         this.secondPartTimeline.add(this.second);
         this.secondPartTimeline.add(this.third);
+        this.secondPartTimeline.add(this.lampLight);
         this.secondPartTimeline.add(this.fourth, "-=0.2");
         this.secondPartTimeline.add(this.fifth, "-=0.2");
         this.secondPartTimeline.add(this.sixth, "-=0.2");
