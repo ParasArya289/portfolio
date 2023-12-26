@@ -89,6 +89,8 @@ export default class Controlls {
   setSmoothScroll() {
     this.asscroll = this.setupASScroll();
   }
+
+  //TO BE FIXED: Glitch on mobile view
   setScrollTrigger() {
     // const scroll = GSAP.matchMedia();
     ScrollTrigger.matchMedia({
