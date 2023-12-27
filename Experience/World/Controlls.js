@@ -91,6 +91,7 @@ export default class Controlls {
   }
 
   //TO BE FIXED: Glitch on mobile view
+  //matchmedia is working but gsap is freaking out on scale
   setScrollTrigger() {
     // const scroll = GSAP.matchMedia();
     ScrollTrigger.matchMedia({
