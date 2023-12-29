@@ -107,7 +107,7 @@ svg {
   animation-delay: 0.2s;
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 @keyframes load {
@@ -241,20 +241,22 @@ svg {
   background-color: var(--color-blue);
 }
 
-
-
 /* -------------------Projects section------------------ */
 .projects-control {
   display: flex;
   align-items: center;
-  gap: 50px;
-  margin-top:70px;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 70px;
   padding: 0% 4%;
 }
 .projects-btn {
   box-sizing: border-box;
   border: none;
-  padding: 15px 40px;
+  width: 30%;
+  height: 40px;
+  flex: 1;
+  max-width: 150px;
   border-radius: 9999px;
   color: var(--color-background);
   font-weight: 600;
@@ -324,7 +326,7 @@ svg {
   position: relative;
   padding: 20% 5%;
 }
-.section-detail-wrapper:nth-of-type(2){
+.section-detail-wrapper:nth-of-type(2) {
   padding: 0% 5%;
 }
 .section-heading {
@@ -447,22 +449,22 @@ svg {
     right: 0;
     left: auto;
   }
-  .hero-main{
+  .hero-main {
     bottom: 120px;
   }
-  .hero-second{
+  .hero-second {
     top: 210px;
   }
-  .hero-wrapper{
+  .hero-wrapper {
     width: calc(100% - 60px);
   }
-  .hero-main-title{
+  .hero-main-title {
     font-size: 32px;
   }
-  .hero-main-description{
+  .hero-main-description {
     font-size: 18px;
   }
-  .hero-second-subheading{
+  .hero-second-subheading {
     font-size: 18px;
   }
 }
