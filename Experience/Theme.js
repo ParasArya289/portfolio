@@ -8,6 +8,7 @@ export default class Theme extends EventEmitter {
     this.theme = "light";
     this.toggleButton = document.querySelector(".toggle-btn");
     this.toggleCircle = document.querySelector(".toggle-circle");
+    this.favicon = document.getElementById("favicon");
     this.setEventListeners();
 
     const prefersDarkMode = window.matchMedia(
@@ -18,6 +19,7 @@ export default class Theme extends EventEmitter {
       this.theme = "dark";
       document.body.classList.toggle("dark-theme");
       document.body.classList.toggle("light-theme");
+      this.favicon.href = "/P-dark.svg";
     }
 
     this.resources.on("ready", () => {
@@ -38,12 +40,14 @@ export default class Theme extends EventEmitter {
           document.body.classList.add("dark-theme");
           this.theme = "dark";
           document.body.classList.remove("light-theme");
+          this.favicon.href = "/P-dark.svg";
           this.emit("switch", this.theme);
         } else {
           this.toggleCircle.classList.remove("slide");
           document.body.classList.add("light-theme");
           document.body.classList.remove("dark-theme");
           this.theme = "light";
+          this.favicon.href = "/P-light.svg";
           this.emit("switch", this.theme);
         }
       });
@@ -54,6 +58,7 @@ export default class Theme extends EventEmitter {
       this.theme = this.theme === "light" ? "dark" : "light";
       document.body.classList.toggle("dark-theme");
       document.body.classList.toggle("light-theme");
+      this.favicon.href = this.theme === "dark" ? "/P-dark.svg" : "/P-light.svg";
       this.emit("switch", this.theme);
     });
   }
