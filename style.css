@@ -241,6 +241,53 @@ svg {
   background-color: var(--color-blue);
 }
 
+
+
+/* -------------------Projects section------------------ */
+.projects-control {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-top:70px;
+  padding: 0% 4%;
+}
+.projects-btn {
+  box-sizing: border-box;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 9999px;
+  color: var(--color-background);
+  font-weight: 600;
+  font-size: 14px;
+  background-color: var(--color-blue);
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+.projects-btn:hover {
+  transform: scale(0.9);
+}
+.projects-btn[data-active="true"] {
+  transform: scale(0.9);
+}
+
+.project-detail-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 30px;
+  overflow: auto;
+  scroll-snap-type: x mandatory;
+}
+.project-detail-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.projects-section {
+  /* min-width: 400px; */
+  /* background-color: red; */
+  min-width: fit-content;
+  scroll-snap-align: start;
+}
+
 /* -------------------Section------------------ */
 
 .section-margin {
@@ -276,6 +323,9 @@ svg {
 .section-detail-wrapper {
   position: relative;
   padding: 20% 5%;
+}
+.section-detail-wrapper:nth-of-type(2){
+  padding: 0% 5%;
 }
 .section-heading {
   font-size: 18px;
