@@ -38,9 +38,50 @@ export default class Controlls {
 
     GSAP.registerPlugin(ScrollTrigger);
     document.querySelector(".page").style.overflow = "visible";
+
     this.setSmoothScroll();
     this.setScrollTrigger();
+    this.setProjectScroll();
   }
+
+  setProjectScroll() {
+    const buttons = document.querySelectorAll(".projects-btn");
+    buttons.forEach((button) => {
+      button.addEventListener("click", (e) => {
+        scroll(e);
+      });
+    });
+    const updateActiveButton = (value) => {
+      const buttons = document.querySelectorAll(".projects-btn");
+      buttons.forEach((button) => {
+        const buttonValue = button.value;
+        button.setAttribute(
+          "data-active",
+          buttonValue === value ? "true" : "false"
+        );
+      });
+    };
+    const scroll = (e) => {
+      const { value } = e.target;
+      const sectionWrapper = document.querySelector(".project-detail-wrapper")
+      const sections =
+      sectionWrapper.querySelectorAll(".projects-section");
+
+      sections.forEach((section) => {
+        //scroll
+        if (section.classList.contains(value)) {
+          const scrollLeft =
+            section.offsetLeft - sectionWrapper.offsetLeft;
+            sectionWrapper.scrollTo({
+            left: scrollLeft,
+            behavior: "smooth",
+          });
+          updateActiveButton(value);
+        }
+      });
+    };
+  }
+
   setupASScroll() {
     // https://github.com/ashthornton/asscroll
     const asscroll = new ASScroll({
@@ -905,6 +946,7 @@ export default class Controlls {
   //   //   this.secondPartTimeline.add(this.ninth, "-=0.1");
   //   // });
   // }
+
   resize() {}
   update() {}
 }
