@@ -289,7 +289,24 @@ svg {
   min-width: fit-content;
   scroll-snap-align: start;
 }
-
+.project-links {
+  display: flex;
+  gap: 10px;
+  font-size: small;
+  text-align: center;
+  margin-block: 5px 30px;
+}
+.project-links > a {
+  text-decoration: none;
+  color: var(--color-background);
+  padding: 7px 30px;
+  border-radius: 9999px;
+  background-color:var(--color-blue);
+  transition: transform 200ms ease;
+}
+.project-links > a:hover {
+  transform: scale(0.95);
+}
 /* -------------------Section------------------ */
 
 .section-margin {
@@ -407,6 +424,9 @@ svg {
 }
 .section:nth-of-type(even) .section-title-decoration:nth-child(4) {
   background-color: var(--color-green);
+}
+.section:last-of-type{
+  /* padding-bottom: 0px; */
 }
 /* -------------------Hero------------------ */
 .hero {
