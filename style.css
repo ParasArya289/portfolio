@@ -301,7 +301,7 @@ svg {
   color: var(--color-background);
   padding: 7px 30px;
   border-radius: 9999px;
-  background-color:var(--color-blue);
+  background-color: var(--color-blue);
   transition: transform 200ms ease;
 }
 .project-links > a:hover {
@@ -425,9 +425,21 @@ svg {
 .section:nth-of-type(even) .section-title-decoration:nth-child(4) {
   background-color: var(--color-green);
 }
-.section:last-of-type{
+.section:last-of-type {
   /* padding-bottom: 0px; */
 }
+.social-links {
+  margin-block: 5px 30px;
+}
+.social-links > a {
+  text-decoration: none;
+  color: var(--color-background);
+  padding: 5px 10px;
+  border-radius: 9999px;
+  font-size: small;
+  background-color: var(--color-green);
+}
+
 /* -------------------Hero------------------ */
 .hero {
   height: 100vh;
