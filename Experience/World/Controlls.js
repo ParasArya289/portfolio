@@ -2,6 +2,7 @@ import Experience from "../Experience";
 import GSAP from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ASScroll from "@ashthornton/asscroll";
+import {debounce} from "../Utils/debounce"
 
 export default class Controlls {
   constructor() {
@@ -50,12 +51,35 @@ export default class Controlls {
   }
 
   setProjectScroll() {
+    const sectionWrapper = document.querySelector(".project-detail-wrapper");
+    const sections = sectionWrapper.querySelectorAll(".projects-section");
     const buttons = document.querySelectorAll(".projects-btn");
     buttons.forEach((button) => {
       button.addEventListener("click", (e) => {
         scroll(e);
       });
     });
+
+    const handleHorizontalScroll = debounce(() => {
+      if (!sectionWrapper) {
+        return;
+      }
+
+      const scrollLeft = sectionWrapper.scrollLeft;
+
+      sections.forEach((section) => {
+        const sectionLeft = section.offsetLeft - sectionWrapper.offsetLeft;
+        const sectionRight = sectionLeft + section.offsetWidth;
+
+        if (scrollLeft >= sectionLeft && scrollLeft < sectionRight) {
+          const value = section.classList[1]; // Assuming the class contains the value
+          updateActiveButton(value);
+        }
+      });
+    }, 200);
+
+    sectionWrapper.addEventListener("scroll", handleHorizontalScroll);
+
     const updateActiveButton = (value) => {
       const buttons = document.querySelectorAll(".projects-btn");
       buttons.forEach((button) => {
@@ -66,11 +90,9 @@ export default class Controlls {
         );
       });
     };
+
     const scroll = (e) => {
       const { value } = e.target;
-      const sectionWrapper = document.querySelector(".project-detail-wrapper");
-      const sections = sectionWrapper.querySelectorAll(".projects-section");
-
       sections.forEach((section) => {
         //scroll
         if (section.classList.contains(value)) {
@@ -137,7 +159,7 @@ export default class Controlls {
   //TO BE FIXED: Glitch on mobile view
   //matchmedia is working but gsap is freaking out on scale
   //FIXED: version 3.10 to use scrollTrigger matchmedia fixes issue
-  
+
   setScrollTrigger() {
     // const scroll = GSAP.matchMedia();
     // scroll.add("(min-width:969px)", () => {});
