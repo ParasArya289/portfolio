@@ -11,24 +11,24 @@ export default class Theme extends EventEmitter {
     this.favicon = document.getElementById("favicon");
     this.setEventListeners();
 
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    if (prefersDarkMode) {
-      this.toggleCircle.classList.toggle("slide");
-      this.theme = "dark";
-      document.body.classList.toggle("dark-theme");
-      document.body.classList.toggle("light-theme");
-      this.favicon.href = "/P-dark.svg";
-    }
+    // const prefersDarkMode = window.matchMedia(
+    //   "(prefers-color-scheme: dark)"
+    // ).matches;
+    // if (prefersDarkMode) {
+    //   this.toggleCircle.classList.toggle("slide");
+    //   this.theme = "dark";
+    //   document.body.classList.toggle("dark-theme");
+    //   document.body.classList.toggle("light-theme");
+    //   this.favicon.href = "/P-dark.svg";
+    // }
 
-    this.resources.on("ready", () => {
-      setTimeout(() => {
-        if (prefersDarkMode) {
-          this.emit("switch", this.theme);
-        }
-      }, 0);
-    });
+    // this.resources.on("ready", () => {
+    //   setTimeout(() => {
+    //     if (prefersDarkMode) {
+    //       this.emit("switch", this.theme);
+    //     }
+    //   }, 0);
+    // });
 
     //change theme if users device display mode changes
     window
